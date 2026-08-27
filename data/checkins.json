@@ -5,6 +5,12 @@
       "name": "早睡早起",
       "description": "把明天的精神，留给今天准备好。",
       "color": "forest"
+    },
+    {
+      "id": "1787847865866",
+      "name": "练习打字,提高学习效率",
+      "description": "练习打字",
+      "color": "rust"
     }
   ],
   "logs": {},
@@ -26,5 +32,5 @@
     }
   ],
   "goalLogs": {},
-  "updatedAt": "2026-08-27T16:23:14.776Z"
+  "updatedAt": "2026-08-27T16:24:25.866Z"
 }
