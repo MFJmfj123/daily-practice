@@ -1,24 +1,6 @@
 {
   "habits": [
     {
-      "id": "water",
-      "name": "喝水 8 杯",
-      "description": "照顾身体，是最基础的自律。",
-      "color": "forest"
-    },
-    {
-      "id": "move",
-      "name": "运动 30 分钟",
-      "description": "让身体先动起来，情绪会跟上。",
-      "color": "gold"
-    },
-    {
-      "id": "english",
-      "name": "学习英语",
-      "description": "每天积累一点，世界就多一扇窗。",
-      "color": "rust"
-    },
-    {
       "id": "sleep",
       "name": "23:30 前睡觉",
       "description": "把明天的精神，留给今天准备好。",
@@ -29,5 +11,5 @@
   "notes": {},
   "goals": [],
   "goalLogs": {},
-  "updatedAt": "2026-08-27T16:20:16.039Z"
+  "updatedAt": "2026-08-27T16:20:18.038Z"
 }
