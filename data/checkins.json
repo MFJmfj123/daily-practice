@@ -1,12 +1,6 @@
 {
   "habits": [
     {
-      "id": "read",
-      "name": "阅读 20 分钟",
-      "description": "给自己一段安静的输入时间。",
-      "color": "rust"
-    },
-    {
       "id": "water",
       "name": "喝水 8 杯",
       "description": "照顾身体，是最基础的自律。",
@@ -35,5 +29,5 @@
   "notes": {},
   "goals": [],
   "goalLogs": {},
-  "updatedAt": null
+  "updatedAt": "2026-08-27T16:20:16.039Z"
 }
