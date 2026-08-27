@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f0e8" />
+    <title>日常 / Daily Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-mark">
+          <span class="brand-glyph">日</span>
+          <div>
+            <strong>日常</strong>
+            <span>DAILY PRACTICE</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label">WORKSPACE</div>
+        <nav class="main-nav" aria-label="主导航">
+          <button class="nav-item active" data-view="today"><span class="nav-icon">◌</span><span>今天</span><em id="todayNavCount">0/5</em></button>
+          <button class="nav-item" data-view="calendar"><span class="nav-icon">▦</span><span>月历</span></button>
+          <button class="nav-item" data-view="habits"><span class="nav-icon">☷</span><span>习惯管理</span></button>
+          <button class="nav-item" data-view="goals"><span class="nav-icon">◈</span><span>目标</span></button>
+          </nav>
+
+        <div class="sidebar-footer">
+          <div class="sync-mini-status" id="syncMiniStatus"><span class="status-dot"></span><span>仅本地保存</span></div>
+          <button class="settings-link" data-open-settings><span>⚙</span> 设置与同步</button>
+          <p class="version-label">v0.2 · built for one</p>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-glyph">日</span><strong>日常</strong></div>
+          <div class="date-stamp" id="dateStamp">2026 / 08 / 27 · THU</div>
+          <button class="icon-button mobile-settings" title="设置与同步" data-open-settings>⚙</button>
+        </header>
+
+        <section class="view" id="todayView">
+          <div class="today-intro section-intro">
+            <div>
+              <div class="eyebrow">GOOD MORNING, YOU</div>
+              <h1>把今天，过成<br /><span>想要的样子。</span></h1>
+            </div>
+            <div class="streak-block">
+              <span class="streak-number" id="streakNumber">0</span>
+              <span class="streak-label">DAY STREAK<br /><small>连续打卡</small></span>
+            </div>
+          </div>
+
+          <div class="today-grid">
+            <section class="daily-card">
+              <div class="card-heading">
+                <div>
+                  <span class="eyebrow">TODAY&#39;S PRACTICE</span>
+                  <h2>今日计划</h2>
+                </div>
+                <div class="progress-ring" id="progressRing"><span id="progressValue">0%</span></div>
+              </div>
+              <div class="habit-list" id="todayHabitList"></div>
+              <button class="add-habit-button" id="openHabitModal"><span>＋</span> 添加一个习惯</button>
+            </section>
+
+            <aside class="reflection-panel">
+              <div class="panel-topline"><span class="eyebrow">A SMALL REFLECTION</span><span class="panel-mark">✳</span></div>
+              <h3 id="quoteText">"完成不是终点，<br />是给明天的信。"</h3>
+              <div class="note-area">
+                <label for="dailyNote">今天有什么值得记下？</label>
+                <textarea id="dailyNote" placeholder="写下此刻的一个念头…"></textarea>
+                <span class="save-hint" id="noteSaveHint">自动保存在本地</span>
+              </div>
+            </aside>
+          </div>
+
+          <div class="overview-strip">
+            <div class="overview-copy"><span class="eyebrow">YOUR RHYTHM</span><strong>保持自己的节奏</strong><span>最近 7 天完成情况</span></div>
+            <div class="week-bars" id="weekBars"></div>
+            <div class="week-score"><strong id="weekScore">0%</strong><span>周完成率</span></div>
+          </div>
+          <section class="today-goals-card" id="todayGoalsCard">
+            <div class="card-heading"><div><span class="eyebrow">TODAY'S GOALS</span><h2>今日目标</h2></div><span class="goal-card-note">按天记录进度</span></div>
+            <div id="todayGoalsList"></div>
+          </section>
+        </section>
+
+        <section class="view hidden" id="calendarView">
+          <div class="section-intro compact-intro">
+            <div><div class="eyebrow">A MONTH IN VIEW</div><h1>你的月历。</h1><p>每一个小方格，都是你为自己留下的证据。</p></div>
+            <div class="month-controls"><button class="icon-button" id="prevMonth" title="上个月">←</button><strong id="monthTitle">2026 年 08 月</strong><button class="icon-button" id="nextMonth" title="下个月">→</button></div>
+          </div>
+          <section class="calendar-card"><div class="calendar-weekdays"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendarGrid"></div></section>
+          <div class="calendar-legend"><span><i class="legend-dot full"></i> 全部完成</span><span><i class="legend-dot partial"></i> 部分完成</span><span><i class="legend-dot empty"></i> 尚未打卡</span></div>
+        </section>
+
+        <section class="view hidden" id="habitsView">
+          <div class="section-intro compact-intro"><div><div class="eyebrow">YOUR DAILY SYSTEM</div><h1>习惯管理。</h1><p>少一点复杂，多一点持续。</p></div><button class="primary-button" id="newHabitButton"><span>＋</span> 新建习惯</button></div>
+          <div class="habit-manager" id="habitManager"></div>
+        </section>
+
+        <div class="modal-backdrop hidden" id="habitModal" role="dialog" aria-modal="true" aria-labelledby="habitModalTitle">
+          <section class="modal habit-modal">
+            <button class="modal-close icon-button" id="closeHabitModal" title="关闭">×</button>
+            <div class="eyebrow">NEW HABIT / 新习惯</div>
+            <h2 id="habitModalTitle">给自己一个小约定</h2>
+            <p class="modal-intro">从一个具体、容易开始的行动出发，让坚持变得轻一点。</p>
+            <form id="habitForm">
+              <input type="hidden" id="habitEditId" />
+              <label>习惯名称<input id="habitName" placeholder="例如：阅读 20 分钟" maxlength="40" required /></label>
+              <label>一句话说明<input id="habitDesc" placeholder="例如：给自己一段安静的输入时间" maxlength="80" /></label>
+              <label>颜色主题
+                <div class="color-picker" id="colorPicker" role="radiogroup" aria-label="选择颜色主题">
+                  <button type="button" class="color-option rust active" data-color="rust" aria-label="陶土红"></button>
+                  <button type="button" class="color-option forest" data-color="forest" aria-label="森林绿"></button>
+                  <button type="button" class="color-option gold" data-color="gold" aria-label="秋日金"></button>
+                  <button type="button" class="color-option sky" data-color="sky" aria-label="天空蓝"></button>
+                </div>
+              </label>
+              <div class="modal-actions"><button type="button" class="secondary-button" id="cancelHabitModal">取消</button><button type="submit" class="primary-button" id="habitSubmit"><span>＋</span> 保存习惯</button></div>
+            </form>
+            <div class="settings-feedback" id="habitFeedback"></div>
+          </section>
+        </div>
+
+        <section class="view hidden" id="goalsView">
+          <div class="section-intro compact-intro">
+            <div>
+              <div class="eyebrow">LONG-TERM GOALS</div>
+              <h1>你的长远目标。</h1>
+              <p>把大愿景拆成每天的小行动，让时间替你证明。</p>
+            </div>
+            <button class="primary-button" id="newGoalButton"><span>＋</span> 新建目标</button>
+          </div>
+          <div class="goals-list" id="goalsList"></div>
+          <div id="goalsEmpty" class="empty-state goals-empty">还没有长远目标。设定一个，让今天的打卡都有意义。</div>
+        </section>
+
+        <div class="modal-backdrop hidden" id="goalModal" role="dialog" aria-modal="true" aria-labelledby="goalTitle">
+          <section class="modal">
+            <button class="modal-close icon-button" data-close-goal title="关闭">×</button>
+            <div class="eyebrow">GOAL / 目标</div>
+            <h2 id="goalTitle">新建长远目标</h2>
+            <p class="modal-intro">目标会显示进度条，每天打卡后自动累计进度，直到达成那一天。</p>
+            <form id="goalForm">
+              <input type="hidden" id="goalEditId" />
+              <label>目标名称 <input id="goalName" placeholder="例如：读完 50 本书" required /></label>
+              <label>目标描述 <input id="goalDesc" placeholder="一句话描述你为什么想完成它" /></label>
+              <div class="form-grid">
+                <label>开始日期 <input id="goalStart" type="date" required /></label>
+                <label>目标日期 <input id="goalEnd" type="date" required /></label>
+              </div>
+              <div class="modal-actions">
+                <button type="button" class="secondary-button" data-close-goal>取消</button>
+                <button type="submit" class="primary-button" id="goalSubmit">保存目标</button>
+              </div>
+            </form>
+            <div class="settings-feedback" id="goalFeedback"></div>
+          </section>
+        </div>
+      </main>
+
+      <aside class="right-rail">
+        <div class="rail-date"><span id="railMonth">AUGUST</span><strong id="railDay">27</strong><span id="railWeekday">THURSDAY</span></div>
+        <div class="rail-divider"></div>
+        <div class="rail-section"><div class="rail-heading"><span class="eyebrow">AT A GLANCE</span><span>↗</span></div><div class="glance-stat"><strong id="monthCompletion">0%</strong><span>本月完成率</span></div><div class="mini-progress"><span id="monthProgress"></span></div></div>
+        <div class="rail-section rail-goals-section" id="railGoalsSection" style="display:none;">
+          <div class="rail-heading"><span class="eyebrow">TOP GOAL</span><span>◈</span></div>
+          <div id="railGoalContent"></div>
+        </div>
+        <div class="rail-section quote-rail"><span class="quote-mark">"</span><p id="railQuote">微小的行动，<br />会长成可靠的自己。</p><span class="quote-source">— DAILY NOTE</span></div>
+        <div class="rail-section rail-pending"><div class="rail-heading"><span class="eyebrow">YESTERDAY / 昨日</span><span>!</span></div><div id="yesterdayPending" class="yesterday-pending"></div></div>
+      </aside>
+    </div>
+
+    <div class="modal-backdrop hidden" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <section class="modal">
+        <button class="modal-close icon-button" data-close-settings title="关闭">×</button>
+        <div class="eyebrow">PRIVATE DATA / GITHUB</div>
+        <h2 id="settingsTitle">设置与同步</h2>
+        <p class="modal-intro">本地保存是默认方式。连接 GitHub 后，你可以把打卡数据备份到自己的私有仓库，也能在不同设备恢复。</p>
+        <form id="settingsForm">
+          <div class="form-grid"><label>GitHub 用户名<input id="githubOwner" autocomplete="username" placeholder="例如 octocat" /></label><label>仓库名<input id="githubRepo" placeholder="例如 daily-practice" /></label></div>
+          <label>Personal Access Token <input id="githubToken" type="password" autocomplete="new-password" placeholder="只保存在当前浏览器" /></label>
+          <label>数据文件路径<input id="githubPath" value="data/checkins.json" /></label>
+          <p class="security-note">建议使用 Fine-grained token，仅授予目标私有仓库的 Contents: Read and write 权限。Token 不会写入 GitHub 数据文件。</p>
+          <div class="modal-actions"><button type="button" class="secondary-button" id="importButton">从 GitHub 导入</button><button type="submit" class="primary-button" id="syncButton">保存并同步</button></div>
+        </form>
+        <div class="settings-feedback" id="settingsFeedback" role="status"></div>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
