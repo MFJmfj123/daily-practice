@@ -2,7 +2,7 @@
   "habits": [
     {
       "id": "sleep",
-      "name": "23:30 前睡觉",
+      "name": "早睡早起",
       "description": "把明天的精神，留给今天准备好。",
       "color": "forest"
     }
@@ -26,5 +26,5 @@
     }
   ],
   "goalLogs": {},
-  "updatedAt": "2026-08-27T16:22:41.357Z"
+  "updatedAt": "2026-08-27T16:23:14.776Z"
 }
